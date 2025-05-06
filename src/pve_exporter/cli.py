@@ -1,4 +1,4 @@
-    """
+"""
 Proxmox VE exporter for the Prometheus monitoring system.
 """
 
