@@ -60,6 +60,9 @@ def main():
     nodeflags.add_argument('--collector.subscription', dest='collector_subscription',
                               action=BooleanOptionalAction, default=True,
                               help='Exposes PVE subscription info')
+    nodeflags.add_argument('--collector.zfs', dest='collector_zfs',
+                           action=BooleanOptionalAction, default=True,
+                           help='Exposes PVE ZFS info')
 
     scrapeflags = parser.add_argument_group('scrape collectors', description=(
         'metrics concerning the operation of the Prometheus PVE exporter itself.'
@@ -105,7 +108,8 @@ def main():
         backup_info=params.collector_backup_info,
         config=params.collector_config,
         replication=params.collector_replication,
-        qdevice=params.collector_qdevice
+        qdevice=params.collector_qdevice,
+        zfs=params.collector_zfs
     )
     scrape_metrics.API_METRICS_ENABLED = params.api_metrics_enabled
     scrape_metrics.TARGET_METRICS_ENABLED = params.target_metrics_enabled

@@ -69,6 +69,7 @@ Usage
                         [--collector.config | --no-collector.config]
                         [--collector.replication | --no-collector.replication]
                         [--collector.subscription | --no-collector.subscription]
+                        [--collector.zfs | --no-collector.zfs]
                         [--collector.pve-api-metrics | --no-collector.pve-api-metrics]
                         [--collector.target-metrics | --no-collector.target-metrics]
                         [--config.file CONFIG_FILE]
@@ -123,6 +124,8 @@ Usage
                             Exposes PVE replication info
       --collector.subscription, --no-collector.subscription
                             Exposes PVE subscription info
+      --collector.zfs, --no-collector.zfs
+                            Exposes PVE ZFS info
 
     scrape collectors:
       metrics concerning the operation of the Prometheus PVE exporter itself.
@@ -324,6 +327,24 @@ Here's an example of the metrics exported.
     # HELP pve_replication_info Proxmox vm replication info
     # TYPE pve_replication_info gauge
     pve_replication_info{guest="qemu/1",id="1-0",source="node/proxmox1",target="node/proxmox2",type="local"} 1.0
+    # HELP pve_zfs_free_bytes Proxmox ZFS free space in bytes
+    # TYPE pve_zfs_free_bytes gauge
+    pve_zfs_free_bytes{id="node/proxmox",name="pool1"} 1.664037625856e+012
+    # HELP pve_zfs_deduplication_ratio Proxmox ZFS deduplication ratio
+    # TYPE pve_zfs_deduplication_ratio gauge
+    pve_zfs_deduplication_ratio{id="node/proxmox",name="pool1"} 1.0
+    # HELP pve_zfs_health_status Proxmox ZFS health status
+    # TYPE pve_zfs_health_status gauge
+    pve_zfs_health_status{id="node/proxmox",name="pool1"} 1.0
+    # HELP pve_zfs_size_bytes Proxmox ZFS total size in bytes
+    # TYPE pve_zfs_size_bytes gauge
+    pve_zfs_size_bytes{id="node/proxmox",name="pool1"} 1.906965479424e+012
+    # HELP pve_zfs_fragmentation_percentage Proxmox ZFS fragmentation percentage
+    # TYPE pve_zfs_fragmentation_percentage gauge
+    pve_zfs_fragmentation_percentage{id="node/proxmox",name="pool1"} 13.0
+    # HELP pve_zfs_allocated_bytes Proxmox ZFS allocated space in bytes
+    # TYPE pve_zfs_allocated_bytes gauge
+    pve_zfs_allocated_bytes{id="node/proxmox",name="pool1"} 2.42927853568e+011
 
 Authentication
 --------------
